@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haaythein & Niar - Undangan</title>
+
+  <!-- Font elegan -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { width:100%; height:100%; overflow-x:hidden; scroll-behavior:smooth; font-family:'Poppins', sans-serif; }
+
+    section {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    video.bg {
+      position: absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:-1;
+    }
+
+    /* Tombol Maps Lokasi */
+    .maps-btn {
+      position: absolute;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.7);
+      border-radius: 30px;
+      padding: 10px 26px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      z-index: 10;
+    }
+    .maps-btn:hover {
+      background: rgba(255, 255, 255, 0.8);
+      color: #000;
+    }
+
+    /* Styling rekening */
+    .rekening-wrapper {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: #fff;
+      z-index: 2;
+    }
+
+    .rekening-item {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.1rem;
+      font-weight: 500;
+      line-height: 1.8;
+    }
+
+    .rekening-1 { top: 40%; }
+    .rekening-2 { top: 60%; }
+
+    button {
+      margin-left: 8px;
+      padding: 8px 16px;
+      border-radius: 25px;
+      border: none;
+      background: rgba(255, 255, 255, 0.3);
+      color: #fff;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background: rgba(255, 255, 255, 0.5);
+      transform: scale(1.05);
+    }
+
+    .notif {
+      position: fixed;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 10px;
+      z-index: 9999;
+      font-size: 16px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HALAMAN 1: Pengantin -->
+<section>
+  <video src="pengantin.mp4" autoplay muted loop playsinline class="bg"></video>
+</section>
+
+<!-- HALAMAN 2: Bride -->
+<section>
+  <video src="bride.mp4" autoplay muted loop playsinline class="bg"></video>
+</section>
+
+<!-- HALAMAN 3: Groom -->
+<section>
+  <video src="groom.mp4" autoplay muted loop playsinline class="bg"></video>
+</section>
+
+<!-- HALAMAN 4: Lokasi -->
+<section>
+  <video src="lokasi.mp4" autoplay muted loop playsinline class="bg"></video>
+  <a href="https://maps.app.goo.gl/ya31ZLyKFNwCD7BL9?g_st=aw" target="_blank" class="maps-btn">
+    📍 Lihat Lokasi
+  </a>
+</section>
+
+<!-- HALAMAN 5: Gallery -->
+<section>
+  <video src="gallery.mp4" autoplay muted loop playsinline class="bg"></video>
+</section>
+
+<!-- HALAMAN 6: Story -->
+<section>
+  <video src="story.mp4" autoplay muted loop playsinline class="bg"></video>
+</section>
+
+<!-- HALAMAN 7: Gift -->
+<section>
+  <video src="gift.mp4" autoplay muted loop playsinline class="bg"></video>
+
+  <div class="rekening-wrapper">
+    <div class="rekening-item rekening-1">
+      <span id="rekeningDimsa">Dimsa: 1234-5678-9012-3456</span>
+      <button onclick="copyRekening('rekeningDimsa')">Copy</button>
+    </div>
+    <div class="rekening-item rekening-2">
+      <span id="rekeningRisa">Risa: 9876-5432-1098-7654</span>
+      <button onclick="copyRekening('rekeningRisa')">Copy</button>
+    </div>
+  </div>
+</section>
+
+<!-- HALAMAN 8: RSVP -->
+<section id="rsvp" style="padding:30px 10px; background:transparent; font-family:'Poppins', sans-serif; text-align:center;">
+  <h2 style="font-family:'Playfair Display', serif; font-size:20px; color:#ffffff; text-shadow:0 1px 3px rgba(0,0,0,0.2); margin-bottom:6px;">
+    Konfirmasi Kehadiran
+  </h2>
+  <p style="color:#f2f2f2; font-size:13px; margin-bottom:15px; text-shadow:0 1px 2px rgba(0,0,0,0.15);">
+    Isi kehadiran & ucapan hangat untuk pengantin 💌
+  </p>
+
+  <form id="rsvpForm" 
+        style="max-width:280px; margin:0 auto; text-align:left; background:rgba(255,255,255,0.15); backdrop-filter:blur(8px); padding:14px; border-radius:12px; box-shadow:0 1px 8px rgba(0,0,0,0.15); font-size:13px; border:1px solid rgba(255,255,255,0.3);">
+    
+    <label style="color:#fff;">Nama:</label>
+    <input type="text" id="nama" placeholder="Nama Anda" required
+           style="width:100%; padding:6px; margin:5px 0 10px 0; border:1px solid rgba(255,255,255,0.5); border-radius:6px; font-size:13px; background:rgba(255,255,255,0.2); color:#fff;">
+
+    <label style="color:#fff;">Kehadiran:</label>
+    <select id="kehadiran" required
+            style="width:100%; padding:6px; margin:5px 0 10px 0; border:1px solid rgba(255,255,255,0.5); border-radius:6px; font-size:13px; background:rgba(255,255,255,0.2); color:#fff;">
+      <option value="">-- Pilih Kehadiran --</option>
+      <option value="Hadir">Hadir</option>
+      <option value="Tidak Hadir">Tidak Hadir</option>
+    </select>
+
+    <label style="color:#fff;">Ucapan:</label>
+    <textarea id="pesan" placeholder="Tulis ucapan singkat..." rows="2" required
+              style="width:100%; padding:6px; margin:5px 0 10px 0; border:1px solid rgba(255,255,255,0.5); border-radius:6px; font-size:13px; background:rgba(255,255,255,0.2); color:#fff;"></textarea>
+
+    <button type="submit" 
+            style="width:100%; background:rgba(255,255,255,0.3); color:#fff; border:none; padding:8px; border-radius:6px; cursor:pointer; font-weight:500; font-size:13px; letter-spacing:0.5px; transition:0.3s;">
+      Kirim
+    </button>
+  </form>
+
+  <div id="listPesan" style="max-width:300px; margin:20px auto 0 auto; text-align:left;">
+    <h3 style="text-align:center; color:#fff; font-family:'Playfair Display', serif; font-size:16px; text-shadow:0 1px 2px rgba(0,0,0,0.2);">
+      Ucapan & Doa 💕
+    </h3>
+
+    <div id="pesanContainer" 
+         style="margin-top:10px; background:rgba(255,255,255,0.15); border-radius:10px; border:1px solid rgba(255,255,255,0.3); padding:10px; height:140px; overflow-y:auto; box-shadow:0 1px 6px rgba(0,0,0,0.1); font-size:13px; color:#fff;">
+      <p style="color:#e0e0e0; text-align:center;">Belum ada ucapan 💌</p>
+    </div>
+  </div>
+</section>
+
+<!-- HALAMAN 9: Penutup -->
+<section>
+  <video src="penutup.mp4" autoplay muted loop playsinline class="bg"></video>
+</section>
+
+<script>
+  // Salin nomor rekening
+  function copyRekening(id) {
+    const rekening = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(rekening).then(() => {
+      let notif = document.createElement('div');
+      notif.classList.add('notif');
+      notif.textContent = "Nomor rekening berhasil disalin!";
+      document.body.appendChild(notif);
+      setTimeout(() => { notif.style.opacity = 1; }, 10);
+      setTimeout(() => {
+        notif.style.opacity = 0;
+        setTimeout(() => { notif.remove(); }, 500);
+      }, 2000);
+    });
+  }
+
+  // RSVP script
+  const form = document.getElementById("rsvpForm");
+  const container = document.getElementById("pesanContainer");
+
+  form.addEventListener("submit", function(event){
+    event.preventDefault();
+
+    const nama = document.getElementById("nama").value.trim();
+    const kehadiran = document.getElementById("kehadiran").value;
+    const pesan = document.getElementById("pesan").value.trim();
+
+    if(!nama || !kehadiran || !pesan) return;
+
+    if(container.querySelector("p") && container.querySelector("p").textContent.includes("Belum ada ucapan")){
+      container.innerHTML = "";
+    }
+
+    const div = document.createElement("div");
+    div.style.background = "rgba(255,255,255,0.2)";
+    div.style.border = "1px solid rgba(255,255,255,0.3)";
+    div.style.borderRadius = "8px";
+    div.style.padding = "8px 10px";
+    div.style.marginBottom = "8px";
+    div.innerHTML = `
+      <p style="margin:0; color:#fff;"><strong>${nama}</strong> 
+      <span style="color:${kehadiran === 'Hadir' ? '#a8e6a3' : '#ffb3b3'};">(${kehadiran})</span></p>
+      <p style="margin:4px 0 0 0; color:#f5f5f5;">${pesan}</p>
+    `;
+
+    container.prepend(div);
+    container.scrollTo({ top: 0, behavior: "smooth" });
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
